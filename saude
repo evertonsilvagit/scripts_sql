@@ -1,0 +1,98 @@
+CREATE TABLE `avaliacao_antropometrica` (
+  `id` bigint NOT NULL,
+  `data` date NOT NULL,
+  `mg` double NOT NULL,
+  `mm` double NOT NULL,
+  `idade_metabolica` bigint DEFAULT NULL,
+  `visceral` bigint NOT NULL,
+  PRIMARY KEY (id)
+ );
+
+CREATE TABLE `medidas` (
+  `id` bigint NOT NULL,
+  `id_avaliacao` bigint NOT NULL,
+  `altura` double NOT NULL,
+  `peso` double NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_avaliacao) REFERENCES avaliacao_antropometrica(id) 
+ );
+
+CREATE TABLE `circunferencias` (
+  `id` bigint NOT NULL,
+    `id_avaliacao` bigint NOT NULL,
+    ombro double NOT NULL,
+    cintura double NOT NULL,
+    quadril double NOT NULL,
+    coxa_esquerda double NOT NULL,
+    panturrilha_esquerda  double NOT NULL,
+    panturrilha_direita double NOT NULL,
+    punho_esquerdo  double NOT NULL,
+    punho_direito double NOT NULL,
+    braco_relaxado_direito double NOT NULL,
+    braco_relaxado_esquerdo  double NOT NULL,
+    braco_contraido_direito  double NOT NULL,
+    braco_contraido_esquerdo double NOT NULL,
+    antebraco_direito  double NOT NULL,
+    antebraco_esquerdo double NOT NULL,
+    peitoral  double NOT NULL,
+    abdomen double NOT NULL,
+    coxa_direita double NOT NULL,
+    pescoco double NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_avaliacao) REFERENCES avaliacao_antropometrica(id)  
+ );
+
+CREATE TABLE `dobras_cutaneas` (
+  `id` bigint NOT NULL,
+    `id_avaliacao` bigint NOT NULL,
+    biceps double NOT NULL,
+    triceps double NOT NULL,
+    axiliar_media double NOT NULL,
+    torax double NOT NULL,
+    panturrilha_medial double NOT NULL,
+    abdominal double NOT NULL,
+    suprailiaca  double NOT NULL,
+    subescapular double NOT NULL,
+    coxa double NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_avaliacao) REFERENCES avaliacao_antropometrica(id)  
+ );
+
+
+CREATE TABLE `resultados` (
+  `id` bigint NOT NULL,
+    `id_avaliacao` bigint NOT NULL,
+    imc double NOT NULL,
+    peso_ideal double NOT NULL,
+    porcentagem_massa_gorda double NOT NULL,
+    porcentagem_massa_magra double NOT NULL,
+    soma_de_dobras double NOT NULL,
+    kg_massa_gorda double NOT NULL,
+    kg_massa_magra double NOT NULL,
+    razao_cintura_quadril double NOT NULL,
+    area_muscular_braco double NOT NULL,
+    area_gordura_braco double NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_avaliacao) REFERENCES avaliacao_antropometrica(id) 
+ );
+
+CREATE TABLE `recomendacao` (
+  `id` bigint NOT NULL,
+    `id_avaliacao` bigint NOT NULL,
+    imc double NOT NULL,
+    peso_ideal double NOT NULL,
+    porcentagem_massa_gorda double NOT NULL,
+    porcentagem_massa_magra double NOT NULL,
+    soma_de_dobras double NOT NULL,
+    kg_massa_gorda double NOT NULL,
+    kg_massa_magra double NOT NULL,
+    razao_cintura_quadril double NOT NULL,
+    area_muscular_braco double NOT NULL,
+    area_gordura_braco double NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_avaliacao) REFERENCES avaliacao_antropometrica(id) 
+ );
+
+
+
+ 
